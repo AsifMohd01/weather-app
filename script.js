@@ -1,5 +1,5 @@
 // API Key for OpenWeatherMap
-const API_KEY = "" // Your OpenWeatherMap API key
+const API_KEY = "dbf07141fc58b36f6611fa67403ac414" // Your OpenWeatherMap API key
 
 // DOM Elements
 const citySearchInput = document.getElementById("city-search")
