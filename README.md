@@ -84,8 +84,6 @@ A modern, mobile-responsive weather application built using **HTML**, **CSS**, a
 
 ## 📸 Screenshots
 
-> 
-
 ### 🌤️ Home Page  
 ![Home Page](screenshots/weather.png)  
 ![Weather Details](screenshots/weather-details.png)  
