@@ -112,7 +112,8 @@ A modern, mobile-responsive weather application built using **HTML**, **CSS**, a
 ## 👨‍💻 Developer
 
 **Asif Mohd**  
-📍 Jammu & Kashmir | 💻 B.Tech CSE  
+📍 Jammu & Kashmir | 💻 B.Tech ISE  
+🔗 [Email](asif.mohd@campusuvce.in)
 🔗 [GitHub Profile](https://github.com/AsifMohd01)
 
 > “Simple UI. Powerful features. Your personal weather companion.”
