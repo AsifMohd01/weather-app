@@ -5,42 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
     <div class="app-container">
-        <!-- Sidebar Navigation -->
-        <nav class="sidebar">
-            <div class="logo">
-                <span class="material-symbols-outlined">cloud</span>
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="navbar-container">
+                <div class="navbar-logo">
+                    <div class="logo-icon">
+                        <i data-lucide="cloud"></i>
+                    </div>
+                    <span class="logo-text">WeatherApp</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="navbar-links">
+                    <button class="nav-link active" data-page="weather">
+                        <i data-lucide="thermometer"></i>
+                        <span>Weather</span>
+                    </button>
+                    <button class="nav-link" data-page="cities">
+                        <i data-lucide="building-2"></i>
+                        <span>Cities</span>
+                    </button>
+                    <button class="nav-link" data-page="compare">
+                        <i data-lucide="arrow-up-down"></i>
+                        <span>Compare</span>
+                    </button>
+                    <button class="nav-link" data-page="settings">
+                        <i data-lucide="settings"></i>
+                        <span>Settings</span>
+                    </button>
+                </div>
+
+                <!-- Mobile Navigation Button -->
+                <button class="mobile-menu-button">
+                    <i data-lucide="menu"></i>
+                </button>
             </div>
-            <ul class="nav-items">
-                <li class="nav-item active" data-page="weather">
-                    <span class="material-symbols-outlined">thermostat</span>
-                    <span class="nav-text">Weather</span>
-                </li>
-                <li class="nav-item" data-page="cities">
-                    <span class="material-symbols-outlined">location_city</span>
-                    <span class="nav-text">Cities</span>
-                </li>
-                <li class="nav-item" data-page="compare">
-                    <span class="material-symbols-outlined">compare_arrows</span>
-                    <span class="nav-text">Compare</span>
-                </li>
-                <li class="nav-item" data-page="settings">
-                    <span class="material-symbols-outlined">settings</span>
-                    <span class="nav-text">Settings</span>
-                </li>
-            </ul>
+
+            <!-- Mobile Navigation Menu -->
+            <div class="mobile-menu">
+                <button class="nav-link active" data-page="weather">
+                    <i data-lucide="thermometer"></i>
+                    <span>Weather</span>
+                </button>
+                <button class="nav-link" data-page="cities">
+                    <i data-lucide="building-2"></i>
+                    <span>Cities</span>
+                </button>
+                <button class="nav-link" data-page="compare">
+                    <i data-lucide="arrow-up-down"></i>
+                    <span>Compare</span>
+                </button>
+                <button class="nav-link" data-page="settings">
+                    <i data-lucide="settings"></i>
+                    <span>Settings</span>
+                </button>
+            </div>
         </nav>
 
-        <!-- Main Content Area -->
+        <!-- Main Content -->
         <main class="main-content">
-            <!-- Search Bar -->
-            <div class="search-container">
+            <!-- Search Bar (not shown on compare page) -->
+            <div class="search-container" id="main-search-container">
                 <div class="search-bar">
-                    <span class="material-symbols-outlined">search</span>
+                    <i data-lucide="search"></i>
                     <input type="text" id="city-search" placeholder="Search for cities">
                     <div id="search-results" class="search-results"></div>
                 </div>
@@ -48,73 +81,75 @@
 
             <!-- Weather Page -->
             <div class="page active" id="weather-page">
-                <div class="weather-container">
-                    <!-- Current Weather -->
-                    <div class="current-weather">
-                        <div class="weather-info">
-                            <h1 id="city-name">Loading...</h1>
-                            <p id="weather-description">Please search for a city</p>
-                            <div class="temperature">
-                                <span id="current-temp">--</span><span class="degree">°</span>
+                <div class="weather-grid">
+                    <div class="weather-main">
+                        <!-- Current Weather -->
+                        <div class="current-weather">
+                            <div class="weather-info">
+                                <h1 id="city-name">Loading...</h1>
+                                <p id="weather-description">Please search for a city</p>
+                                <div class="temperature">
+                                    <span id="current-temp">--</span><span class="degree">°</span>
+                                </div>
+                            </div>
+                            <div class="weather-icon">
+                                <img id="weather-icon-img" src="https://openweathermap.org/img/wn/10d@4x.png" alt="Weather icon">
                             </div>
                         </div>
-                        <div class="weather-icon">
-                            <img id="weather-icon-img" src="https://openweathermap.org/img/wn/10d@4x.png" alt="Weather icon">
+
+                        <!-- Today's Forecast -->
+                        <div class="forecast-container">
+                            <h2>TODAY'S FORECAST</h2>
+                            <div class="hourly-forecast" id="hourly-forecast">
+                                <!-- Hourly forecast items will be added here by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Air Conditions -->
+                        <div class="air-conditions">
+                            <div class="conditions-header">
+                                <h2>AIR CONDITIONS</h2>
+                                <button class="favorite-btn" id="add-favorite-btn">Add Favorite</button>
+                            </div>
+                            <div class="conditions-grid">
+                                <div class="condition-item">
+                                    <i data-lucide="thermometer"></i>
+                                    <div class="condition-info">
+                                        <p>Real Feel</p>
+                                        <h3 id="real-feel">--°</h3>
+                                    </div>
+                                </div>
+                                <div class="condition-item">
+                                    <i data-lucide="wind"></i>
+                                    <div class="condition-info">
+                                        <p>Wind</p>
+                                        <h3 id="wind-speed">-- km/h</h3>
+                                    </div>
+                                </div>
+                                <div class="condition-item">
+                                    <i data-lucide="droplets"></i>
+                                    <div class="condition-info">
+                                        <p>Chance of rain</p>
+                                        <h3 id="rain-chance">--%</h3>
+                                    </div>
+                                </div>
+                                <div class="condition-item">
+                                    <i data-lucide="sun"></i>
+                                    <div class="condition-info">
+                                        <p>UV Index</p>
+                                        <h3 id="uv-index">--</h3>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Today's Forecast -->
-                    <div class="forecast-container">
-                        <h2>TODAY'S FORECAST</h2>
-                        <div class="hourly-forecast" id="hourly-forecast">
-                            <!-- Hourly forecast items will be added here by JavaScript -->
+                    <!-- 7-Day Forecast -->
+                    <div class="weekly-forecast">
+                        <h2>7-DAY FORECAST</h2>
+                        <div class="weekly-forecast-list" id="weekly-forecast">
+                            <!-- Weekly forecast items will be added here by JavaScript -->
                         </div>
-                    </div>
-
-                    <!-- Air Conditions -->
-                    <div class="air-conditions">
-                        <div class="conditions-header">
-                            <h2>AIR CONDITIONS</h2>
-                            <button class="see-more-btn" id="add-favorite-btn">Add Favorite</button>
-                        </div>
-                        <div class="conditions-grid">
-                            <div class="condition-item">
-                                <span class="material-symbols-outlined">thermostat</span>
-                                <div class="condition-info">
-                                    <p>Real Feel</p>
-                                    <h3 id="real-feel">--°</h3>
-                                </div>
-                            </div>
-                            <div class="condition-item">
-                                <span class="material-symbols-outlined">air</span>
-                                <div class="condition-info">
-                                    <p>Wind</p>
-                                    <h3 id="wind-speed">-- km/h</h3>
-                                </div>
-                            </div>
-                            <div class="condition-item">
-                                <span class="material-symbols-outlined">water_drop</span>
-                                <div class="condition-info">
-                                    <p>Chance of rain</p>
-                                    <h3 id="rain-chance">--%</h3>
-                                </div>
-                            </div>
-                            <div class="condition-item">
-                                <span class="material-symbols-outlined">wb_sunny</span>
-                                <div class="condition-info">
-                                    <p>UV Index</p>
-                                    <h3 id="uv-index">--</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 7-Day Forecast -->
-                <div class="weekly-forecast">
-                    <h2>7-DAY FORECAST</h2>
-                    <div class="weekly-forecast-list" id="weekly-forecast">
-                        <!-- Weekly forecast items will be added here by JavaScript -->
                     </div>
                 </div>
             </div>
@@ -136,7 +171,7 @@
                     <div class="compare-cities">
                         <div class="compare-city">
                             <div class="search-bar">
-                                <span class="material-symbols-outlined">search</span>
+                                <i data-lucide="search"></i>
                                 <input type="text" id="city-search-1" placeholder="Search for first city">
                                 <div id="search-results-1" class="search-results"></div>
                             </div>
@@ -146,7 +181,7 @@
                         </div>
                         <div class="compare-city">
                             <div class="search-bar">
-                                <span class="material-symbols-outlined">search</span>
+                                <i data-lucide="search"></i>
                                 <input type="text" id="city-search-2" placeholder="Search for second city">
                                 <div id="search-results-2" class="search-results"></div>
                             </div>
@@ -181,10 +216,56 @@
                 </div>
             </div>
         </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-top">
+                    <div class="footer-info">
+                        <h3>WeatherApp</h3>
+                        <p>Get accurate weather forecasts for any location</p>
+                    </div>
+
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h4>Features</h4>
+                            <ul>
+                                <li>Real-time weather data</li>
+                                <li>7-day forecasts</li>
+                                <li>City comparisons</li>
+                                <li>Favorite locations</li>
+                            </ul>
+                        </div>
+
+                        <div class="footer-column">
+                            <h4>Resources</h4>
+                            <ul>
+                                <li>Weather API</li>
+                                <li>Documentation</li>
+                                <li>Support</li>
+                                <li>Privacy Policy</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p>© <span id="current-year"></span> WeatherApp. All rights reserved.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter">
+                            <i data-lucide="twitter"></i>
+                        </a>
+                        <a href="#" aria-label="GitHub">
+                            <i data-lucide="github"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <!-- Notification element for displaying messages -->
-    <div class="notification"></div>
+    <div class="notification" id="notification"></div>
 
     <script src="script.js"></script>
 </body>
