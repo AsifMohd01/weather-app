@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <span class="material-symbols-outlined">cloud</span>
+            </div>
+            <ul class="nav-items">
+                <li class="nav-item active" data-page="weather">
+                    <span class="material-symbols-outlined">thermostat</span>
+                    <span class="nav-text">Weather</span>
+                </li>
+                <li class="nav-item" data-page="cities">
+                    <span class="material-symbols-outlined">location_city</span>
+                    <span class="nav-text">Cities</span>
+                </li>
+                <li class="nav-item" data-page="compare">
+                    <span class="material-symbols-outlined">compare_arrows</span>
+                    <span class="nav-text">Compare</span>
+                </li>
+                <li class="nav-item" data-page="settings">
+                    <span class="material-symbols-outlined">settings</span>
+                    <span class="nav-text">Settings</span>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-bar">
+                    <span class="material-symbols-outlined">search</span>
+                    <input type="text" id="city-search" placeholder="Search for cities">
+                    <div id="search-results" class="search-results"></div>
+                </div>
+            </div>
+
+            <!-- Weather Page -->
+            <div class="page active" id="weather-page">
+                <div class="weather-container">
+                    <!-- Current Weather -->
+                    <div class="current-weather">
+                        <div class="weather-info">
+                            <h1 id="city-name">Loading...</h1>
+                            <p id="weather-description">Please search for a city</p>
+                            <div class="temperature">
+                                <span id="current-temp">--</span><span class="degree">°</span>
+                            </div>
+                        </div>
+                        <div class="weather-icon">
+                            <img id="weather-icon-img" src="https://openweathermap.org/img/wn/10d@4x.png" alt="Weather icon">
+                        </div>
+                    </div>
+
+                    <!-- Today's Forecast -->
+                    <div class="forecast-container">
+                        <h2>TODAY'S FORECAST</h2>
+                        <div class="hourly-forecast" id="hourly-forecast">
+                            <!-- Hourly forecast items will be added here by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Air Conditions -->
+                    <div class="air-conditions">
+                        <div class="conditions-header">
+                            <h2>AIR CONDITIONS</h2>
+                            <button class="see-more-btn" id="add-favorite-btn">Add Favorite</button>
+                        </div>
+                        <div class="conditions-grid">
+                            <div class="condition-item">
+                                <span class="material-symbols-outlined">thermostat</span>
+                                <div class="condition-info">
+                                    <p>Real Feel</p>
+                                    <h3 id="real-feel">--°</h3>
+                                </div>
+                            </div>
+                            <div class="condition-item">
+                                <span class="material-symbols-outlined">air</span>
+                                <div class="condition-info">
+                                    <p>Wind</p>
+                                    <h3 id="wind-speed">-- km/h</h3>
+                                </div>
+                            </div>
+                            <div class="condition-item">
+                                <span class="material-symbols-outlined">water_drop</span>
+                                <div class="condition-info">
+                                    <p>Chance of rain</p>
+                                    <h3 id="rain-chance">--%</h3>
+                                </div>
+                            </div>
+                            <div class="condition-item">
+                                <span class="material-symbols-outlined">wb_sunny</span>
+                                <div class="condition-info">
+                                    <p>UV Index</p>
+                                    <h3 id="uv-index">--</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7-Day Forecast -->
+                <div class="weekly-forecast">
+                    <h2>7-DAY FORECAST</h2>
+                    <div class="weekly-forecast-list" id="weekly-forecast">
+                        <!-- Weekly forecast items will be added here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cities Page -->
+            <div class="page" id="cities-page">
+                <div class="cities-container">
+                    <h1>Favorite Cities</h1>
+                    <div class="favorite-cities" id="favorite-cities">
+                        <!-- Favorite cities will be added here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Compare Page -->
+            <div class="page" id="compare-page">
+                <div class="compare-container">
+                    <h1>Compare Cities</h1>
+                    <div class="compare-cities">
+                        <div class="compare-city">
+                            <div class="search-bar">
+                                <span class="material-symbols-outlined">search</span>
+                                <input type="text" id="city-search-1" placeholder="Search for first city">
+                                <div id="search-results-1" class="search-results"></div>
+                            </div>
+                            <div class="city-weather" id="city-weather-1">
+                                <!-- City 1 weather will be added here by JavaScript -->
+                            </div>
+                        </div>
+                        <div class="compare-city">
+                            <div class="search-bar">
+                                <span class="material-symbols-outlined">search</span>
+                                <input type="text" id="city-search-2" placeholder="Search for second city">
+                                <div id="search-results-2" class="search-results"></div>
+                            </div>
+                            <div class="city-weather" id="city-weather-2">
+                                <!-- City 2 weather will be added here by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Page -->
+            <div class="page" id="settings-page">
+                <div class="settings-container">
+                    <h1>Settings</h1>
+                    <div class="settings-options">
+                        <div class="setting-item">
+                            <span>Temperature Unit</span>
+                            <div class="toggle-container">
+                                <button class="unit-toggle active" data-unit="celsius">°C</button>
+                                <button class="unit-toggle" data-unit="fahrenheit">°F</button>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <span>Wind Speed Unit</span>
+                            <div class="toggle-container">
+                                <button class="wind-toggle active" data-wind="kmh">km/h</button>
+                                <button class="wind-toggle" data-wind="mph">mph</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Notification element for displaying messages -->
+    <div class="notification"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
